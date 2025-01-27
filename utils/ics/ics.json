@@ -1,0 +1,13 @@
+{
+    "calendar": {
+        "beginend": "BEGIN:VCALENDAR\nVERSION: 2.0\nPRODID:- //%provider%.//%creator%//EN\n%between%\nEND:VCALENDAR"
+    },
+    "event": {
+        "beginend": "BEGIN:VEVENT\n%between%\nEND:VEVENT",
+        "data": "UID:%uuid%\nDTSTAMP:%tdate%\nDTSTART:%sdate%\nDTEND:%edate%\nSUMMARY:%summary%\nLOCATION:%location%\nDESCRIPTION:%description%\nRRULE:FREQ=%freq%;COUNT=%count%;"
+    },
+    "alarm": {
+        "beginend": "BEGIN:VALARM\n%between%\nEND:VALARM",
+        "data": "ACTION:DISPLAY\nTRIGGER:-PT%date% ;\nDESCRIPTION:%description%"
+    }
+}

@@ -1,0 +1,4 @@
+{
+  "schema": "https://graphql.anilist.co",
+  "documents": ["app/**/*.{ts,tsx}", "lib/**/*.{ts,tsx}"]
+}

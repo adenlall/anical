@@ -12,6 +12,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "types": [
+      "unplugin-icons/types/react"
+    ],
     "incremental": true,
     "plugins": [
       {
