@@ -1,5 +1,6 @@
 import { AuthBadgeFragment } from "@/lib/types/anilist";
 import gql from "graphql-tag";
+import GenerateCalendar from "./GenerateCalendar";
 
 export const AUTH_BADGE_FRAGMENT = gql`
     fragment AuthBadge on User {
@@ -35,6 +36,6 @@ export default (viewer: AuthBadgeFragment) => {
         </p>
       </div>
     </div>
-    <button className="btn btn-lg bg-gradient-to-r from-primary via-accent to-secondary text-base-300">Generate Calendar</button>
+    <GenerateCalendar />
   </div>
 }

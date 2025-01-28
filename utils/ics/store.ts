@@ -4,7 +4,7 @@ import { CalendarItem } from "./interfaces";
 
 const DB_NAME = "AniCalUser";
 const STORE_NAME = "Calendars";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 // Initialize DB only on client side
 const initializeDB = async (): Promise<IDBDatabase> => {

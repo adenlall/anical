@@ -9,7 +9,7 @@ export interface AnimeItem {
 
 const DB_NAME = "AniCalUser";
 const STORE_NAME = "AnimeList";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 // Initialize DB only on client side
 const initializeDB = async (): Promise<IDBDatabase> => {
