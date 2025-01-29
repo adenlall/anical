@@ -4,6 +4,7 @@
 [![React Version](https://img.shields.io/badge/react-19.0.0-blue?logo=react)](https://react.dev/)
 [![Zustand State Management](https://img.shields.io/badge/state_management-zustand-%2320232a)](https://zustand-demo.pmnd.rs/)
 
+
 AniCal is a Next.js 15 application that helps anime enthusiasts export their AniList watching list into a standardized `.ics` calendar format. Easily integrate your anime schedule with popular calendar services like Google Calendar, Outlook, or Apple Calendar.
 
 ## ✨ Features
