@@ -11,6 +11,25 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "@next/next/no-img-element": "off",
+      "react/display-name": "off", // Disable the react/display-name rule
+      "import/no-anonymous-default-export": "off", // Disable the import/no-anonymous-default-export rule
+    },
+    // Add the `ignores` property here
+  },
+  {
+    ignores: [
+      "node_modules/",        // Ignore the node_modules directory
+      "dist/",                // Ignore the dist directory
+      "**/*.test.ts",         // Ignore all test files
+      "lib/*", // Ignore a specific file
+      "lib/types/anilist.ts", // Ignore a specific file
+      "**/anilist.ts", // Ignore a specific file
+      "./lib/types/anilist.ts",
+    ]
+  },
 ];
 
 export default eslintConfig;

@@ -11,7 +11,7 @@ import { cookies } from 'next/headers';
 
 
 export default async function ProfilePage() {
-  let id = (await cookies()).get("anilist_id")?.value;
+  const id = (await cookies()).get("anilist_id")?.value;
   const queryRes = await Anilist<ProfileQuery>(
     gql`query Profile($status: MediaListStatus, $type: MediaType, $userId: Int){
         Viewer {

@@ -1,6 +1,8 @@
 import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
 import { fetchAniList } from '@/lib/auth';
+import gql from 'graphql-tag';
+import { AuthApiQuery } from '@/lib/types/anilist';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -41,8 +43,8 @@ export async function GET(request: NextRequest) {
       maxAge: age, // 8 week
     });
 
-    const userData = await fetchAniList<any>(
-      `query {
+    const userData = await fetchAniList<AuthApiQuery>(
+      gql`query AuthAPI{
         Viewer {
           id
           name
@@ -54,14 +56,14 @@ export async function GET(request: NextRequest) {
       {},
       data.access_token
     );
-    const viewer = userData.data.Viewer;  
-    cookieStore.set('user', JSON.stringify({ name: viewer.name, id: viewer.id, avatar: viewer.avatar.large }), {
+    const viewer = userData.Viewer;
+    cookieStore.set('user', JSON.stringify({ name: viewer?.name, id: viewer?.id, avatar: viewer?.avatar?.large }), {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: age, // 4 week
     });
-    cookieStore.set('anilist_id', viewer.id, {
+    cookieStore.set('anilist_id', String(viewer?.id), {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

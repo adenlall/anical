@@ -62,7 +62,7 @@ export default async function Stats({ data }: { data: AnimeStatsFragment }) {
                     <div className="stat-figure text-secondary">
                         <div className="avatar">
                             <div className="w-16 rounded-full">
-                                <img src={data.staff?.edges[0]?.node?.image?.medium as string} />
+                                <img alt={data.staff.edges[0]?.node?.name?.userPreferred + " photo"} src={data.staff?.edges[0]?.node?.image?.medium as string} />
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ export default async function Stats({ data }: { data: AnimeStatsFragment }) {
     </div>
 }
 
-export const LoveIcon = ({ className }: { className?: any }) => (
+export const LoveIcon = ({ className }: { className?: string | undefined }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

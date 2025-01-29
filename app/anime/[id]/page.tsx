@@ -1,6 +1,5 @@
 import { Anilist } from '@/utils/anilist';
 import type { AnimeHeaderQuery, GetAnimeQuery } from '@/lib/types/anilist';
-import VideoIcon from '~icons/gravity-ui/video';
 import AnimeDetails, { ANIME_DETAILS } from '@/components/@HooKit/AnimeDetails';
 import gql from 'graphql-tag';
 import Characters, { ANIME_CHARACTERS } from '@/components/@HooKit/Characters';

@@ -9,9 +9,9 @@ import { useEffect } from "react"
 export default () => {
     const { isLoading, items, refreshItems } = useAnimeDB();
     useEffect(() => {
+        const ref = async () => await refreshItems();
         ref();
-    }, []);
-    const ref = async () => await refreshItems();
+    }, [refreshItems]);
     if (isLoading && (!items || !items.length)) {
         return <div className="bg-base-200 flex-center rounded-lg p-4 w-full py-20">
             <span className="loading loading-spinner loading-lg m-auto"></span>

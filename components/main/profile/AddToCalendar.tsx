@@ -2,13 +2,12 @@
 
 import { useAnimeDB } from '@/hooks/useAnimeDB';
 import { AnimeCardFragment } from '@/lib/types/anilist';
-import { useEffect, useState } from 'react';
 import PlusIcon from '~icons/gravity-ui/plus';
 import TrashIcon from '~icons/gravity-ui/trash-bin';
 
 
 export default ({ data }: { data: AnimeCardFragment }) => {
-    const { items, saveAnimeItem, isLoading } = useAnimeDB();
+    const { items, saveAnimeItem } = useAnimeDB();
 
     const exist = items.some(item => item.anime_Id === data.id);
     const addTo = async () => {
@@ -16,7 +15,7 @@ export default ({ data }: { data: AnimeCardFragment }) => {
             if (data && data.id) {
                 await saveAnimeItem(data.id, data);
             }
-        } catch (error) {
+        } catch {
             alert("Invalid JSON format for data field!");
         }
     }
@@ -35,7 +34,7 @@ export const RemoveFromCalendar = ({ id }: { id: number }) => {
             if (id) {
                 await removeAnimeItem(id);
             }
-        } catch (error) {
+        } catch {
             alert("We can't remove this Item!");
         }
     }

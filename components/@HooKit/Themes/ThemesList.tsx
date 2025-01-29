@@ -48,19 +48,3 @@ const NewThemeElement = ({ theme }: { theme: string }) => {
         </div>
     </div>
 }
-
-const ThemeElement = ({ theme }: { theme: string }) => {
-    return <div data-theme={theme} className="bg-base-100 text-base-content w-full cursor-pointer font-sans rounded-box">
-        <div className="grid grid-cols-5 grid-rows-3">
-            <div className="col-span-5 row-span-3 row-start-1 flex items-center md:gap-2 gap-1 md:px-4 px-1 md:py-2 py-1">
-                <div className="md:flex hidden flex-grow text-sm">{theme}</div>
-                <div className="flex h-full flex-shrink-0 flex-wrap md:gap-1">
-                    <div className="bg-primary md:w-2 w-4 h-4 md:h-5 md:rounded rounded-none rounded-tr-box rounded-br-box"></div>
-                    <div className="bg-secondary md:w-2 w-4 h-4 md:h-5 md:rounded rounded-none"></div>
-                    <div className="bg-accent md:w-2 w-4 h-4 md:h-5 md:rounded rounded-none"></div>
-                    <div className="bg-neutral md:w-2 w-4 h-4 md:h-5 md:rounded rounded-none rounded-tl-box rounded-bl-box"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-}

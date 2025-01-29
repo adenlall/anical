@@ -28,7 +28,7 @@ export default function Review({ data }: { data: AnimeReviewsFragment }) {
     const review = data.reviews.edges[random];
     return <div>
         <div className="flex items-center gap-2">
-            <img className="base-content border-base-100 border-4 btn-circle -mb-4 relative" src={review?.node?.user?.avatar?.medium as string} />
+            <img alt={review?.node?.user?.name + " profile image"} className="base-content border-base-100 border-4 btn-circle -mb-4 relative" src={review?.node?.user?.avatar?.medium as string} />
             <Rating score={review?.node?.score} />
             <span className="flex items-center gap-1 px-1 badge -mb-1 opacity-80"><LikeIcon /> {review?.node?.rating}</span>
         </div>

@@ -1,19 +1,30 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 
 export default function StudioImage({ studio }: { studio: string | null | undefined }) {
-    if (!studio) {
-        return <></>;
-    }
-    const [url, setUrl] = useState();
+    const [url, setUrl] = useState<string | undefined>();
+
     useEffect(() => {
+        async function fetchAPI() {
+            if (!studio) return; // Early return if studio is not defined
+            const res = await fetch('/api/image?q=' + studio, { cache: 'force-cache' });
+            const data = await res.json();
+            setUrl(data.url ?? 'none');
+        }
         fetchAPI();
-    }, []);
-    async function fetchAPI() {
-        const res = await fetch('/api/image?q=' + studio, { cache: 'force-cache' });
-        const data = await res.json();
-        setUrl(data.url ?? 'none')
+    }, [studio]);
+
+    if (!studio || url === 'none') {
+        return null;
     }
-    return url !== 'none' ? <img src={url} className="bg-base-100 w-auto h-14 shadow-md rounded-lg" style={{ aspectRatio: 1 }} /> : <></>;
+
+    return (
+        <img
+            src={url}
+            alt={studio + " studio logo"}
+            className="bg-base-100 w-auto h-14 shadow-md rounded-lg"
+            style={{ aspectRatio: 1 }}
+        />
+    );
 }

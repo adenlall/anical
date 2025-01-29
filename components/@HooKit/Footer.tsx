@@ -1,7 +1,4 @@
-import { getDictionary } from "@/app/[lang]/dictionaries"
-
 export default async function Footer() {
-    const dict = await getDictionary('helpers');
     return <footer className="footer mt-4 bg-primary text-primary-content items-center p-4">
         <aside className="grid-flow-col items-center">
             <svg
@@ -16,7 +13,7 @@ export default async function Footer() {
                     transform="matrix(.1 0 0 -.1 0 400)"
                 />
             </svg>
-            <p className="font-bold text-lg">{dict.footer.headline.replace("%d%", new Date().getFullYear())}</p>
+            <p className="font-bold text-lg">foteeeeeeeeeeeeeeeeeeer</p>
         </aside>
     </footer>
 }
