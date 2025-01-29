@@ -25,8 +25,8 @@ export default () => {
                 </ColoredText>
             </div>
         ) : (
-            <div className={clsx("bg-base-200 rounded-lg p-4", isLoading ? "blur-sm" : null)}>
-                <ColoredText className={"mt-2 ml-2 text-2xl font-extrabold"}>Selected Animes :</ColoredText>
+                <div className={clsx("bg-base-200 rounded-box p-4", isLoading ? "blur-sm" : null)}>
+                    <ColoredText className={"mt-2 ml-5 text-3xl font-extrabold"}>Selected Animes :</ColoredText>
                 <List.List>
                     {items.map(item => (
                         <AnimeCard key={item.id} removeAction={true} id={item.id || 0} {...item.data} />

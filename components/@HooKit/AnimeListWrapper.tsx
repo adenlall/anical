@@ -13,7 +13,7 @@ interface SubComponentProps {
 
 const List = ({ children, className }: ComponentProps) => {
     return (
-        <div className={clsx("my-4 p-2 w-auto bg-base-200 rounded-lg", className)}>
+        <div className={clsx("my-4 p-2 w-auto bg-base-200 rounded-box", className)}>
             {children}
         </div>
     );

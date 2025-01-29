@@ -21,8 +21,8 @@ export const AUTH_BADGE_FRAGMENT = gql`
 
 export default ({ generate = true, ...viewer }: AuthBadgeFragment & { generate?: boolean }) => {
   return <div className="flex justify-between items-center md:flex-row flex-col md:mb-0 mb-6">
-    <div className="flex items-center space-x-4 mb-8">
-      <div className="avatar group">
+    <div className="flex items-center space-x-4 mb-8 group">
+      <div className="avatar">
         <ProfileSettingsRouter />
         <div className="w-24 rounded-full">
           <img

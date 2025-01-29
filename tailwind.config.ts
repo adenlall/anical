@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { themes } from "./utils/themes";
 
 export default {
   content: [
@@ -17,4 +18,7 @@ export default {
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: themes.map((obj) => obj.theme)
+  }
 } satisfies Config;
