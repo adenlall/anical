@@ -61,7 +61,7 @@ AniCal is a Next.js 15 application that helps anime enthusiasts export their Ani
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/anical.git
+git clone https://github.com/adenlall/anical.git
 cd anical
 ```
 2. Install dependencies
