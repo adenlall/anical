@@ -1,20 +1,22 @@
 "use client"
 
+import { AnimeCardFragment } from "./types/anilist";
+import stores from "@/utils/databases.json";
+
 export interface AnimeItem {
     id?: number;
     anime_Id: number;
-    data: object;
+    data: Omit<AnimeCardFragment, 'id'>;
     timestamp?: Date;
 }
 
 const DB_NAME = "AniCalUser";
-const STORE_NAME = "AnimeList";
-const DB_VERSION = 2;
+const STORE_NAME = process.env.NEXT_PUBLIC_STORE_ANIME as string;
+const DB_VERSION = 1; // Increment when changing schema
 
-// Initialize DB only on client side
 const initializeDB = async (): Promise<IDBDatabase> => {
-    // Check if we're in the browser environment
     if (typeof window === 'undefined') {
+        console.error('IndexedDB is only available in browser environments');
         throw new Error('IndexedDB is only available in browser environments');
     }
 
@@ -23,14 +25,28 @@ const initializeDB = async (): Promise<IDBDatabase> => {
 
         request.onupgradeneeded = (event) => {
             const db = request.result;
-            if (!db.objectStoreNames.contains(STORE_NAME)) {
-                const store = db.createObjectStore(STORE_NAME, {
-                    keyPath: "id",
-                    autoIncrement: false,
+            const transaction = (event.target as IDBOpenDBRequest).transaction;
+
+            stores.data.forEach((storeConfig) => {
+                let store: IDBObjectStore;
+                if (!db.objectStoreNames.contains(storeConfig.name)) {
+                    store = db.createObjectStore(
+                        storeConfig.name,
+                        {
+                            keyPath: storeConfig.keyPath.name,
+                            autoIncrement: storeConfig.keyPath.autoincrement
+                        }
+                    );
+                } else {
+                    store = transaction?.objectStore(storeConfig.name) as IDBObjectStore;
+                }
+
+                storeConfig.indexes.forEach((index) => {
+                    if (!store.indexNames.contains(index.name)) {
+                        store.createIndex(index.name, index.keyPath, index.options);
+                    }
                 });
-                store.createIndex("animeId", "anime_Id", { unique: true });
-                store.createIndex("timestamp", "timestamp", { unique: false });
-            }
+            });
         };
 
         request.onsuccess = () => resolve(request.result);
@@ -38,13 +54,11 @@ const initializeDB = async (): Promise<IDBDatabase> => {
     });
 };
 
-// Create a singleton promise for the database connection
 let dbPromise: Promise<IDBDatabase> | null = null;
 
 export const getDB = () => {
     if (!dbPromise) {
         dbPromise = initializeDB().catch((error) => {
-            // Reset the promise if initialization fails
             dbPromise = null;
             throw error;
         });
@@ -52,6 +66,7 @@ export const getDB = () => {
     return dbPromise;
 };
 
+// CRUD Operations with fixes
 export const addAnimeItem = async (item: AnimeItem): Promise<number> => {
     const db = await getDB();
     return new Promise((resolve, reject) => {
@@ -75,14 +90,14 @@ export const deleteAnimeItem = async (id: number): Promise<boolean> => {
         const request = store.delete(id);
 
         request.onsuccess = () => resolve(true);
-        request.onerror = () => reject(false);
+        request.onerror = () => reject(request.error);
     });
 };
 
 export const getAnimeItem = async (id: number): Promise<AnimeItem> => {
     const db = await getDB();
     return new Promise((resolve, reject) => {
-        const transaction = db.transaction(STORE_NAME, "readwrite");
+        const transaction = db.transaction(STORE_NAME, "readonly"); // Corrected to readonly
         const store = transaction.objectStore(STORE_NAME);
         const request = store.get(id);
 

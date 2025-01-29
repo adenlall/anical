@@ -9,8 +9,9 @@ import { useEffect } from "react"
 export default () => {
     const { isLoading, items, refreshItems } = useAnimeDB();
     useEffect(() => {
-        refreshItems();
+        ref();
     }, []);
+    const ref = async () => await refreshItems();
     if (isLoading && (!items || !items.length)) {
         return <div className="bg-base-200 flex-center rounded-lg p-4 w-full py-20">
             <span className="loading loading-spinner loading-lg m-auto"></span>
@@ -20,7 +21,7 @@ export default () => {
         {(!items || !items.length) && !isLoading ? (
             <div className="bg-base-200 flex-center rounded-lg p-4 w-full py-20">
                 <ColoredText>
-                    <h1>Add Anime to your calendar from the lists below!</h1>
+                    <h1 className="text-center">Add Anime to your calendar from the lists below!</h1>
                 </ColoredText>
             </div>
         ) : (

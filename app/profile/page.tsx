@@ -1,7 +1,7 @@
 import AuthBadgs, { AUTH_BADGE_FRAGMENT } from '@/components/main/profile/AuthBadgs';
 import gql from 'graphql-tag';
 import { Anilist } from '@/utils/anilist';
-import { AnimeCardFragment, AuthBadgeFragment, ProfileQuery } from '@/lib/types/anilist';
+import { AuthBadgeFragment, ProfileQuery } from '@/lib/types/anilist';
 import AnimeCard, { ANIME_CARD } from '@/components/@HooKit/AnimeCard';
 import List from '@/components/@HooKit/AnimeListWrapper';
 import AllOngoing from '@/components/main/profile/AllOngoing';
@@ -14,7 +14,7 @@ export default async function ProfilePage() {
     gql`query Profile($status: MediaListStatus, $type: MediaType, $userId: Int){
         Viewer {
           ...AuthBadge
-        }        
+        }
         Page {
           mediaList(status: $status, type: $type, userId: $userId) {
             media {
@@ -34,12 +34,12 @@ export default async function ProfilePage() {
 
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto md:px-4 py-8">
       <AuthBadgs {...(queryRes.Viewer as AuthBadgeFragment)} />
       <PickupAnimes />
       <List>
         <List.Header>
-          <h2 className='ml-4 mt-2 text-2xl'>Curruntly Watching :</h2>
+          <h2 className='ml-4 mt-2 text-2xl'>Currently Watching :</h2>
         </List.Header>
         <List.List>
           {queryRes.Page?.mediaList?.map(media => (

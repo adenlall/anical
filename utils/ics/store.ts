@@ -1,10 +1,11 @@
 "use client"
 
 import { CalendarItem } from "./interfaces";
+import stores from "@/utils/databases.json";
 
 const DB_NAME = "AniCalUser";
-const STORE_NAME = "Calendars";
-const DB_VERSION = 2;
+const STORE_NAME = process.env.NEXT_PUBLIC_STORE_CALENDAR as string;
+const DB_VERSION = 1;
 
 // Initialize DB only on client side
 const initializeDB = async (): Promise<IDBDatabase> => {
@@ -18,13 +19,18 @@ const initializeDB = async (): Promise<IDBDatabase> => {
 
         request.onupgradeneeded = (event) => {
             const db = request.result;
-            if (!db.objectStoreNames.contains(STORE_NAME)) {
-                const store = db.createObjectStore(STORE_NAME, {
-                    keyPath: "id",
-                    autoIncrement: true,
-                });
-                store.createIndex("timestamp", "timestamp", { unique: false });
-            }
+
+            stores.data.forEach((storeConfig) => {
+                if (!db.objectStoreNames.contains(storeConfig.name)) {
+                    const store = db.createObjectStore(
+                        storeConfig.name,
+                        { keyPath: storeConfig.keyPath.name, autoIncrement: storeConfig.keyPath.autoincrement }
+                    );
+                    storeConfig.indexes.forEach((index) => {
+                        store.createIndex(index.name, index.keyPath, index.options);
+                    });
+                }
+            });
         };
 
         request.onsuccess = () => resolve(request.result);

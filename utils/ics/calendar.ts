@@ -2,12 +2,13 @@
 
 import { FileManager } from "./fileManager";
 import data from "./ics.json";
+import { FileData } from "./interfaces";
 export class Calendar {
 
     private fileService: FileManager;
+    file: FileData | null = null;
     content: string;
     name: string;
-    private events: number = 0;
 
     constructor(name: string, provider: string, creator: string) {
         this.name = name;
@@ -17,7 +18,7 @@ export class Calendar {
             .replace("%creator%", creator);
     }
 
-    createEvent(startDate: number, endDate: number, summary: string, description: string, location: string, freq: string, count: number) {
+    createEvent(startDate: string, endDate: string, summary: string, description: string, location: string, freq: string, count: number) {
         this.content = this.content.replace(/%end-event%/g, "");
         this.content = this.content.replace(
             /%between-cal%/g,
@@ -31,21 +32,28 @@ export class Calendar {
             .replace("%edate%", this.isoDate(endDate))
             .replace("%summary%", summary)
             .replace("%description%", description)
+            .replace("%location%", location)
             .replace("%freq%", freq)
             .replace("%count%", "" + count)
 
         this.content = this.content.replace(/%between-event%/g, eventBody + "%end-event%");
-        this.events++;
         return {
             alarm: (description: string, date: string) =>
                 this.createAlarm(description, date)
         };
     }
 
+    async save() {
+    }
+
+    async download() {
+        await this.fileService.downloadFile(this.file?.id || 0);
+    }
+
     async finish() {
         this.content = this.content.replace(/%end-event%/g, "");
         this.content = this.content.replace(/%between-cal%/g, "");
-        await this.fileService.createFile(this.name, this.content, "ics");
+        this.file = await this.fileService.createFile(this.name, this.content, "ics");
     }
 
     private createAlarm(description: string, date: string) {
@@ -64,20 +72,24 @@ export class Calendar {
         };
     }
 
-    private isoDate(timestamp?: number) {
+    private isoDate(timestamp?: string) {
+        let date;
         if (!timestamp) {
-            const currentDate = new Date();
-            const iso = currentDate
-                .toISOString()
-                .replace(/[-:]/g, '')
-                .replace(/\.\d+Z$/, 'Z');
-            return iso;
+            date = new Date();
+        } else {
+            date = new Date(Number(timestamp) * 1000); // Convert to milliseconds
         }
-        const date = new Date(timestamp * 1000); // Convert to milliseconds
-        const iso = date.toISOString();
-        return iso
-            .replace(/[-:]/g, '')
-            .replace(/\.\d+Z$/, 'Z');
+
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const hours = String(date.getUTCHours()).padStart(2, '0');
+        const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+
+        // console.log(timestamp, `${year}${month}${day}T${hours}${minutes}${seconds}Z`);
+        return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
     }
+
 
 }

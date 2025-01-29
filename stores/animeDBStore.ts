@@ -15,14 +15,17 @@ export const useAnimeDBStore = create<AnimeDBStore>((set) => ({
     isLoading: true,
     refreshItems: async () => {
         console.log("REFRECHING ITEMS ...");
-
         try {
+            console.log("TRY S - REFRECHING ITEMS ...");
             set({ isLoading: true });
             const allItems = await getAllAnimeItems();
             set({ items: allItems, isLoading: false });
+            console.log("TRY F - REFRECHING ITEMS ...");
         } catch (error) {
+            console.log("CATCH S - REFRECHING ITEMS ...");
             console.error("Error fetching items:", error);
             set({ isLoading: false });
+            console.log("CATCH F - REFRECHING ITEMS ...");
         }
     },
     saveAnimeItem: async (animeId: number, data: object) => {

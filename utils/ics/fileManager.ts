@@ -72,7 +72,7 @@ export class FileManager {
         const anchor = document.createElement('a');
 
         anchor.href = url;
-        anchor.download = fileData.name || `file-${id}`;
+        anchor.download = fileData.name;
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);

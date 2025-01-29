@@ -4,7 +4,7 @@
     },
     "event": {
         "beginend": "BEGIN:VEVENT\n%between-event%\nEND:VEVENT",
-        "data": "UID:%uuid%\nDTSTAMP:%tdate%\nDTSTART:%sdate%\nDTEND:%edate%\nSUMMARY:%summary%\nLOCATION:%location%\nDESCRIPTION:%description%\nRRULE:FREQ=%freq%;COUNT=%count%;"
+        "data": "UID:%uuid%\nDTSTAMP:%tdate%\nDTSTART:%sdate%\nDTEND:%edate%\nSUMMARY:%summary%\nLOCATION:%location%\nDESCRIPTION:%description%"
     },
     "alarm": {
         "beginend": "BEGIN:VALARM\n%between-alarm%\nEND:VALARM",

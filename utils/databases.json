@@ -1,0 +1,43 @@
+{
+    "data": [
+        {
+            "name": "AnimeList",
+            "keyPath": {
+                "name": "id",
+                "autoincrement": false
+            },
+            "indexes": [
+                {
+                    "name": "animeId",
+                    "keyPath": "anime_Id",
+                    "options": {
+                        "unique": true
+                    }
+                },
+                {
+                    "name": "timestamp",
+                    "keyPath": "timestamp",
+                    "options": {
+                        "unique": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Calendars",
+            "keyPath": {
+                "name": "id",
+                "autoincrement": true
+            },
+            "indexes": [
+                {
+                    "name": "timestamp",
+                    "keyPath": "timestamp",
+                    "options": {
+                        "unique": false
+                    }
+                }
+            ]
+        }
+    ]
+}

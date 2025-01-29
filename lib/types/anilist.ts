@@ -4684,9 +4684,16 @@ export type ProfileQueryVariables = Exact<{
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null, Page?: { __typename?: 'Page', mediaList?: Array<{ __typename?: 'MediaList', media?: { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null } | null } | null } | null> | null } | null };
+export type ProfileQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null, Page?: { __typename?: 'Page', mediaList?: Array<{ __typename?: 'MediaList', media?: { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null } | null } | null> | null } | null };
 
-export type AnimeCardFragment = { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null } | null };
+export type SettingsQueryVariables = Exact<{
+  userId?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type SettingsQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null };
+
+export type AnimeCardFragment = { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null };
 
 export type AnimeReviewsFragment = { __typename?: 'Media', reviews?: { __typename?: 'ReviewConnection', edges?: Array<{ __typename?: 'ReviewEdge', node?: { __typename?: 'Review', summary?: string | null, rating?: number | null, score?: number | null, user?: { __typename?: 'User', name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null } | null } | null } | null> | null } | null };
 
@@ -4711,9 +4718,17 @@ export type AllOngoingQueryVariables = Exact<{
 }>;
 
 
-export type AllOngoingQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null } | null } | null> | null } | null };
+export type AllOngoingQuery = { __typename?: 'Query', Page?: { __typename?: 'Page', media?: Array<{ __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null } | null> | null } | null };
 
 export type AuthBadgeFragment = { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null };
+
+export type AnimeScheduleQueryVariables = Exact<{
+  mediaId?: InputMaybe<Scalars['Int']['input']>;
+  type?: InputMaybe<MediaType>;
+}>;
+
+
+export type AnimeScheduleQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', episodes?: number | null, duration?: number | null, externalLinks?: Array<{ __typename?: 'MediaExternalLink', site: string, type?: ExternalLinkType | null, url?: string | null } | null> | null, airingSchedule?: { __typename?: 'AiringScheduleConnection', nodes?: Array<{ __typename?: 'AiringSchedule', id: number, episode: number, airingAt: number } | null> | null } | null, nextAiringEpisode?: { __typename?: 'AiringSchedule', episode: number, airingAt: number, id: number } | null } | null };
 
 export type MediaFragmentFragment = { __typename?: 'Media', id: number, bannerImage?: string | null, description?: string | null, title?: { __typename?: 'MediaTitle', english?: string | null, native?: string | null } | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null };
 

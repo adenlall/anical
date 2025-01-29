@@ -1,6 +1,5 @@
 import { DocumentNode } from 'graphql/language/ast';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export async function getServerToken() {
   const cookieStore = await cookies();

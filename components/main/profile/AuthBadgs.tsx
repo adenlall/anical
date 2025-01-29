@@ -1,6 +1,7 @@
 import { AuthBadgeFragment } from "@/lib/types/anilist";
 import gql from "graphql-tag";
 import GenerateCalendar from "./GenerateCalendar";
+import ProfileSettingsRouter from "./ProfileSettingsRouter";
 
 export const AUTH_BADGE_FRAGMENT = gql`
     fragment AuthBadge on User {
@@ -18,14 +19,18 @@ export const AUTH_BADGE_FRAGMENT = gql`
     }
 `;
 
-export default (viewer: AuthBadgeFragment) => {
-  return <div className="flex justify-between items-center">
+export default ({ generate = true, ...viewer }: AuthBadgeFragment & { generate?: boolean }) => {
+  return <div className="flex justify-between items-center md:flex-row flex-col md:mb-0 mb-6">
     <div className="flex items-center space-x-4 mb-8">
-      <img
-        src={viewer?.avatar?.medium as string}
-        alt={viewer?.name}
-        className="w-24 h-24 rounded-full"
-      />
+      <div className="avatar group">
+        <ProfileSettingsRouter />
+        <div className="w-24 rounded-full">
+          <img
+            src={viewer?.avatar?.medium as string}
+            alt={viewer?.name}
+          />
+        </div>
+      </div>
       <div>
         <h1 className="text-2xl font-bold">{viewer?.name}</h1>
         <p className="text-gray-600">
@@ -36,6 +41,6 @@ export default (viewer: AuthBadgeFragment) => {
         </p>
       </div>
     </div>
-    <GenerateCalendar />
+    {generate ? <GenerateCalendar /> : null}
   </div>
 }

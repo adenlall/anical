@@ -14,6 +14,7 @@ export const ANIME_CARD = gql`
         title{
             romaji
             english
+            userPreferred
         }
         description(asHtml:false)
         status
@@ -70,7 +71,7 @@ const InsideTopBadge = ({ data, status }: { data: Maybe<MediaFormat>, status?: M
 }
 
 const BottomSec = ({ data }: { data: Maybe<MediaTitle> }) => <div
-    className="tooltip tooltip-bottom w-full"
+    className="md:tooltip md:tooltip-bottom w-full"
     data-tip={data?.userPreferred ?? data?.romaji ?? data?.english ?? data?.native}
 >
     <h3 className="inline-text-3 font-bold text-start" >

@@ -152,6 +152,7 @@
   /******************
         ** INLINE STYLES **
         ******************/
+    
   .card-width {
     width: var(--card-width);
   }
@@ -159,6 +160,15 @@
   .card-height {
     height: var(--card-height);
   }
+@media only screen and (max-width: 600px) {
+  .card-width {
+    width: 9em;
+  }
+
+  .card-height {
+    height: 14em;
+  }
+}
   
   .inline-text {
     overflow: hidden;
