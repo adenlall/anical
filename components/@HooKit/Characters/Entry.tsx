@@ -1,7 +1,7 @@
-import { AnimeCharacterEntryFragment } from "@/generated/graphql";
-import gql from 'graphql-tag'; ;
-import { formated } from "@/utils/helpers";
+import gql from 'graphql-tag';;
 import { LoveIcon } from "../AnimeDetails/Stats";
+import { formated } from "@/utils/helpers";
+import { AnimeCharacterEntryFragment } from '@/lib/types/anilist';
 
 export const ANIME_CHARACTER_ENTRY = gql`
 fragment AnimeCharacterEntry on CharacterEdge {
