@@ -3,6 +3,7 @@ import type { AnimeHeaderQuery, GetAnimeQuery } from '@/lib/types/anilist';
 import VideoIcon from '~icons/gravity-ui/video';
 import AnimeDetails, { ANIME_DETAILS } from '@/components/@HooKit/AnimeDetails';
 import gql from 'graphql-tag';
+import Characters, { ANIME_CHARACTERS } from '@/components/@HooKit/Characters';
 
 interface PageProps {
   params: {
@@ -14,9 +15,11 @@ const ANIME_HEADER = gql`
   query AnimeHeader($id: Int) {
     Media(id: $id, type: ANIME) {
       ...AnimeDetails
+      ...AnimeCharacters
     }
   }
   ${ANIME_DETAILS}
+  ${ANIME_CHARACTERS}
 `
 
 export default async function AnimePage({ params }: PageProps) {
@@ -37,6 +40,11 @@ export default async function AnimePage({ params }: PageProps) {
         favourites: data.Media?.favourites,
         meanScore: data.Media?.meanScore,
         staff: data.Media?.staff,
+      }} />
+
+      <Characters data={{
+        characters: data.Media?.characters,
+        title: data.Media?.title
       }} />
     </div>
   );

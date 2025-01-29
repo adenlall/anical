@@ -7,9 +7,11 @@ import List from '@/components/@HooKit/AnimeListWrapper';
 import AllOngoing from '@/components/main/profile/AllOngoing';
 import { Suspense } from 'react';
 import PickupAnimes from '@/components/main/profile/PickupAnimes';
+import { cookies } from 'next/headers';
 
 
 export default async function ProfilePage() {
+  let id = (await cookies()).get("anilist_id")?.value;
   const queryRes = await Anilist<ProfileQuery>(
     gql`query Profile($status: MediaListStatus, $type: MediaType, $userId: Int){
         Viewer {
@@ -28,7 +30,7 @@ export default async function ProfilePage() {
     {
       status: "CURRENT",
       type: "ANIME",
-      userId: 5783357
+      userId: id
     }
   );
 
