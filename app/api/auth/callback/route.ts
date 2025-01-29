@@ -5,6 +5,7 @@ import { fetchAniList } from '@/lib/auth';
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get('code');
+  const age = 60 * 60 * 24 * 7 * 8;
 
   if (!code) {
     return new Response('No code provided', { status: 400 });
@@ -32,13 +33,12 @@ export async function GET(request: NextRequest) {
       throw new Error(data.error || 'Failed to get token');
     }
 
-    // Set the cookie
     const cookieStore = await cookies();
     cookieStore.set('anilist_token', data.access_token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7 * 1, // 1 week
+      maxAge: age, // 8 week
     });
 
     const userData = await fetchAniList<any>(
@@ -55,11 +55,17 @@ export async function GET(request: NextRequest) {
       data.access_token
     );
     const viewer = userData.data.Viewer;  
-    cookieStore.set('user', JSON.stringify({name:viewer.name, id:viewer.id, avatar:viewer.avatar.large}), {
-      httpOnly: true,
+    cookieStore.set('user', JSON.stringify({ name: viewer.name, id: viewer.id, avatar: viewer.avatar.large }), {
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7 * 4, // 4 week
+      maxAge: age, // 4 week
+    });
+    cookieStore.set('anilist_id', viewer.id, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: age, // 4 week
     });
 
     return new Response(null, {

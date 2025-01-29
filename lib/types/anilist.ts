@@ -4670,12 +4670,17 @@ export type YearStats = {
   year?: Maybe<Scalars['Int']['output']>;
 };
 
+export type SettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SettingsQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null };
+
 export type AnimeHeaderQueryVariables = Exact<{
   id?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type AnimeHeaderQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', description?: string | null, genres?: Array<string | null> | null, format?: MediaFormat | null, meanScore?: number | null, favourites?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null } | null, reviews?: { __typename?: 'ReviewConnection', edges?: Array<{ __typename?: 'ReviewEdge', node?: { __typename?: 'Review', summary?: string | null, rating?: number | null, score?: number | null, user?: { __typename?: 'User', name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null } | null } | null } | null> | null } | null, studios?: { __typename?: 'StudioConnection', edges?: Array<{ __typename?: 'StudioEdge', node?: { __typename?: 'Studio', name: string, favourites?: number | null } | null } | null> | null } | null, staff?: { __typename?: 'StaffConnection', edges?: Array<{ __typename?: 'StaffEdge', role?: string | null, node?: { __typename?: 'Staff', primaryOccupations?: Array<string | null> | null, name?: { __typename?: 'StaffName', userPreferred?: string | null } | null, image?: { __typename?: 'StaffImage', medium?: string | null } | null } | null } | null> | null } | null } | null };
+export type AnimeHeaderQuery = { __typename?: 'Query', Media?: { __typename?: 'Media', description?: string | null, genres?: Array<string | null> | null, format?: MediaFormat | null, meanScore?: number | null, favourites?: number | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null, characters?: { __typename?: 'CharacterConnection', edges?: Array<{ __typename?: 'CharacterEdge', node?: { __typename?: 'Character', favourites?: number | null, name?: { __typename?: 'CharacterName', first?: string | null } | null, image?: { __typename?: 'CharacterImage', medium?: string | null } | null } | null, voiceActors?: Array<{ __typename?: 'Staff', name?: { __typename?: 'StaffName', native?: string | null } | null, image?: { __typename?: 'StaffImage', medium?: string | null } | null } | null> | null } | null> | null } | null, reviews?: { __typename?: 'ReviewConnection', edges?: Array<{ __typename?: 'ReviewEdge', node?: { __typename?: 'Review', summary?: string | null, rating?: number | null, score?: number | null, user?: { __typename?: 'User', name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null } | null } | null } | null> | null } | null, studios?: { __typename?: 'StudioConnection', edges?: Array<{ __typename?: 'StudioEdge', node?: { __typename?: 'Studio', name: string, favourites?: number | null } | null } | null> | null } | null, staff?: { __typename?: 'StaffConnection', edges?: Array<{ __typename?: 'StaffEdge', role?: string | null, node?: { __typename?: 'Staff', primaryOccupations?: Array<string | null> | null, name?: { __typename?: 'StaffName', userPreferred?: string | null } | null, image?: { __typename?: 'StaffImage', medium?: string | null } | null } | null } | null> | null } | null } | null };
 
 export type ProfileQueryVariables = Exact<{
   status?: InputMaybe<MediaListStatus>;
@@ -4685,13 +4690,6 @@ export type ProfileQueryVariables = Exact<{
 
 
 export type ProfileQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null, Page?: { __typename?: 'Page', mediaList?: Array<{ __typename?: 'MediaList', media?: { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null } | null } | null> | null } | null };
-
-export type SettingsQueryVariables = Exact<{
-  userId?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type SettingsQuery = { __typename?: 'Query', Viewer?: { __typename?: 'User', id: number, name: string, avatar?: { __typename?: 'UserAvatar', medium?: string | null } | null, statistics?: { __typename?: 'UserStatisticTypes', anime?: { __typename?: 'UserStatistics', count: number, episodesWatched: number } | null } | null } | null };
 
 export type AnimeCardFragment = { __typename?: 'Media', id: number, description?: string | null, status?: MediaStatus | null, format?: MediaFormat | null, coverImage?: { __typename?: 'MediaCoverImage', large?: string | null } | null, title?: { __typename?: 'MediaTitle', romaji?: string | null, english?: string | null, userPreferred?: string | null } | null };
 
