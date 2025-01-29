@@ -8,7 +8,7 @@ fragment AnimeCharacters on Media {
     title {
         userPreferred
     }
-    characters (perPage:6, sort:FAVOURITES_DESC) {
+    characters (perPage:7, sort:FAVOURITES_DESC) {
         ...AnimeCharactersList
     }
 }

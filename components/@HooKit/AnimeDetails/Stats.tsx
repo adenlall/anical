@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'; 
 import clsx from "clsx";
 import { AnimeStatsFragment } from '@/lib/types/anilist';
+import { formated } from '@/utils/helpers';
 
 export const ANIME_STATS = gql`
 fragment AnimeStats on Media {
@@ -32,9 +33,9 @@ export default async function Stats({ data }: { data: AnimeStatsFragment }) {
             <div className="stat-figure text-primary">
                 <LoveIcon />
             </div>
-            <div className="stat-title">headline</div>
-            <div className="stat-value text-primary">favourites</div>
-            <div className="stat-desc">{data.favourites} like</div>
+            <div className="stat-title">total anime likes</div>
+            <div className="stat-value text-primary">{formated(data.favourites)}</div>
+            <div className="stat-desc">{data.favourites} like for this show</div>
         </div>
 
         <div className="stat">
@@ -51,9 +52,9 @@ export default async function Stats({ data }: { data: AnimeStatsFragment }) {
                         d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
             </div>
-            <div className="stat-title">headline</div>
+            <div className="stat-title">mean score</div>
             <div className="stat-value text-secondary">{data.meanScore} %</div>
-            <div className="stat-desc">{data.meanScore}% like</div>
+            <div className="stat-desc">{data.meanScore}% average rating</div>
         </div>
         {
             data.staff?.edges?.length ?

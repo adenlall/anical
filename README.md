@@ -17,6 +17,37 @@ AniCal is a Next.js 15 application that helps anime enthusiasts export their Ani
 - 🔄 Real-time data synchronization
 - 📱 Responsive design
 
+## 📸 Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="./public/screenshots/home.png" alt="Home Screen" width="400px">
+        <br>
+        <em>Home Screen</em>
+      </td>
+      <td align="center">
+        <img src="./public/screenshots/profile.png" alt="Watchlist Preview" width="400px">
+        <br>
+        <em>Watchlist Preview</em>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="./public/screenshots/settings.png" alt="Profile Settings" width="400px">
+        <br>
+        <em>Profile Settings</em>
+      </td>
+      <td align="center">
+        <img src="./public/screenshots/anime.png" alt="Anime Details" width="400px">
+        <br>
+        <em>Anime Details</em>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 🚀 Getting Started
 
 ### Prerequisites
