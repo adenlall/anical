@@ -56,7 +56,7 @@ export const Navigation = () => <div className="join join-vertical">
   <Link href={"/settings"} className="join-item btn btn-sm btn-square">
     <SettingsIcon />
   </Link>
-  <Link href={"https://github.com/adenlall/anical"} className="join-item btn btn-sm btn-square">
+  <Link href={"https://github.com/adenlall/AnimeCal"} className="join-item btn btn-sm btn-square">
     <GitHubIcon className="fill-base-content w-5 h-5" />
   </Link>
 </div>

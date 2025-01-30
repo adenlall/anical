@@ -1,11 +1,11 @@
-# AniCal - AniList Watching list to Calendar Exporter
+# AnimeCal - AniList Watching list to Calendar Exporter
 
 [![Next.js Version](https://img.shields.io/badge/next.js-15.1.6-blue?logo=next.js)](https://nextjs.org/)
 [![React Version](https://img.shields.io/badge/react-19.0.0-blue?logo=react)](https://react.dev/)
 [![Zustand State Management](https://img.shields.io/badge/state_management-zustand-%2320232a)](https://zustand-demo.pmnd.rs/)
 
 
-AniCal is a Next.js 15 application that helps anime enthusiasts export their AniList watching list into a standardized `.ics` calendar format. Easily integrate your anime schedule with popular calendar services like Google Calendar, Outlook, or Apple Calendar.
+AnimeCal is a Next.js 15 application that helps anime enthusiasts export their AniList watching list into a standardized `.ics` calendar format. Easily integrate your anime schedule with popular calendar services like Google Calendar, Outlook, or Apple Calendar.
 
 ## ✨ Features
 
@@ -61,8 +61,8 @@ AniCal is a Next.js 15 application that helps anime enthusiasts export their Ani
 
 1. Clone the repository
 ```bash
-git clone https://github.com/adenlall/anical.git
-cd anical
+git clone https://github.com/adenlall/AnimeCal.git
+cd AnimeCal
 ```
 2. Install dependencies
 

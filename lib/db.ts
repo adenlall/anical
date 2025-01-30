@@ -10,7 +10,7 @@ export interface AnimeItem {
     timestamp?: Date;
 }
 
-const DB_NAME = "AniCalUser";
+const DB_NAME = "AnimeCalUser";
 const STORE_NAME = process.env.NEXT_PUBLIC_STORE_ANIME as string;
 const DB_VERSION = 1; // Increment when changing schema
 

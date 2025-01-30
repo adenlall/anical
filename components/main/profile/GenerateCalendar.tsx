@@ -22,7 +22,7 @@ export default () => {
         setState("Initializing the calendar service ...");
         setLoading(true);
         try {
-            const calendar = new Calendar(name + ".ics", "Anical", "adenlall");
+            const calendar = new Calendar(name + ".ics", "AnimeCal", "adenlall");
             for (let i = 0; i < items.length; i++) {
                 setState("Fetching additional information " + items[i].data.title?.userPreferred + " ...");
                 const data = await fetchAnimeSchedule(items[i].id || 1);

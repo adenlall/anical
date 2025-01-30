@@ -3,7 +3,7 @@
 import { CalendarItem } from "./interfaces";
 import stores from "@/utils/databases.json";
 
-const DB_NAME = "AniCalUser";
+const DB_NAME = "AnimeCalUser";
 const STORE_NAME = process.env.NEXT_PUBLIC_STORE_CALENDAR as string;
 const DB_VERSION = 1;
 
