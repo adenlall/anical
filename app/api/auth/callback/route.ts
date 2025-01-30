@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
-import { fetchAniList } from '@/lib/auth';
 import gql from 'graphql-tag';
 import { AuthApiQuery } from '@/lib/types/anilist';
+import { Anilist } from '@/utils/anilist';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    // console.log(" ==================> code ==> ", code);
     const tokenResponse = await fetch('https://anilist.co/api/v2/oauth/token', {
       method: 'POST',
       headers: {
@@ -35,6 +36,9 @@ export async function GET(request: NextRequest) {
       throw new Error(data.error || 'Failed to get token');
     }
 
+    // console.log(" ==================> token ==> ", data);
+
+
     const cookieStore = await cookies();
     cookieStore.set('anilist_token', data.access_token, {
       httpOnly: false,
@@ -43,7 +47,7 @@ export async function GET(request: NextRequest) {
       maxAge: age, // 8 week
     });
 
-    const userData = await fetchAniList<AuthApiQuery>(
+    const userData = await Anilist<AuthApiQuery>(
       gql`query AuthAPI{
         Viewer {
           id
@@ -53,8 +57,6 @@ export async function GET(request: NextRequest) {
           }
         }
       }`,
-      {},
-      data.access_token
     );
     const viewer = userData.Viewer;
     cookieStore.set('user', JSON.stringify({ name: viewer?.name, id: viewer?.id, avatar: viewer?.avatar?.large }), {

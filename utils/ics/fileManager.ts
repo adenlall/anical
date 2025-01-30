@@ -1,3 +1,4 @@
+"use client"
 import { CalendarItem, FileData } from "./interfaces";
 import { addIcsItem, deleteIcsItem, getAllIcsItems, getIcsItem, updateIcsItem } from "./store";
 
