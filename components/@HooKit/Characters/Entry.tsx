@@ -43,9 +43,9 @@ export default function Entry({ data }: { data: AnimeCharacterEntryFragment }) {
 
 const Favourites = ({ data }: { data: number | undefined | null }) => {
     return data ?
-        <div className="invisible group-hover:visible absolute rounded-l-lg w-20 h-28 bg-base-100/60 top-0 flex-center-col">
+        <div className="invisible group-hover:visible absolute rounded-l-lg w-20 h-28 text-base-content bg-base-100/60 top-0 flex-center-col">
             <span className="flex gap-1 font-bold">
-                <LoveIcon className={"w-6 h-6 stroke-current fill-current"} /> {formated(data)}
+                <LoveIcon className={"w-6 h-6 stroke-base-content fill-base-contestroke-base-content"} /> {formated(data)}
             </span>
         </div> : <></>;
 }

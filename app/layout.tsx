@@ -9,7 +9,7 @@ export default async function RootLayout({
   }) {
   const theme = (await cookies()).get(currentTheme)?.value;
   return (
-    <html data-theme={theme} lang="en">
+    <html data-theme={theme ?? currentTheme} lang="en">
       <body>
         <AniListProvider>{children}</AniListProvider>
       </body>

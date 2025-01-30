@@ -7,11 +7,11 @@ import { Cookies } from "typescript-cookie";
 export default function ThemesList({ style }: { style?: CSSProperties | undefined }) {
 
     useEffect(() => {
-        document.querySelector('html')?.setAttribute('data-theme', localStorage[currentTheme] ?? currentTheme);
+        const theme = Cookies.get(currentTheme) as string;
+        document.querySelector('html')?.setAttribute('data-theme', theme ?? currentTheme);
     }, []);
     const setheme = (item: string) => {
-        Cookies.set(currentTheme, item)
-        localStorage[currentTheme] = item;
+        Cookies.set(currentTheme, item);
         document.querySelector('html')?.setAttribute('data-theme', item);
     }
 

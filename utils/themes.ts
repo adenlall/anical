@@ -1,19 +1,8 @@
-
-export const isMobile = () => {
-    let userAgent = "";
-    try {
-        const { headers } = require("next/headers");
-        userAgent = headers().get("user-agent") || "";
-    } catch (error) {
-        userAgent = window?.navigator?.userAgent;
-    }
-    return /android.+mobile|ip(hone|[oa]d)/i.test(userAgent);
-};
 export interface Theme {
     name: string,
     theme: string | object
 }
-export const currentTheme: string = "valentine"
+export const currentTheme: string = "cupcake"
 export const themes: Theme[] = [
     {
         name: "hoodark",
