@@ -5,9 +5,9 @@ import gql from 'graphql-tag';
 import Characters, { ANIME_CHARACTERS } from '@/components/@HooKit/Characters';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const ANIME_HEADER = gql`
@@ -23,7 +23,7 @@ const ANIME_HEADER = gql`
 
 export default async function AnimePage({ params }: PageProps) {
   const data = await Anilist<GetAnimeQuery>(ANIME_HEADER, {
-    id: parseInt((await params).id),
+    id: parseInt((await params).id), // Direct access without await
   }) as AnimeHeaderQuery;
 
   return (
